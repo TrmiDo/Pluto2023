@@ -39,3 +39,18 @@ class House(Salad):
 
 class Caesar(salad):
     pass
+
+import datetime
+class Product:
+
+    def __init__(self, exDate, Quant):
+        self.exDate = exDate
+        self.Quant = Quant
+
+class Drink(Product):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate,Quant)
+        self.type = "Drink"
+
+x = Drink(str(datetime.datetime.today()), 1987)
+print(x.exDate)
