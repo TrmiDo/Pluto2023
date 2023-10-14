@@ -122,3 +122,83 @@ class Caesar(Salad):
 
 x = Caesar(str(datetime.datetime.today()), 1987)
 print(x.exDate)
+
+import datetime
+class Product:
+
+    def __init__(self, exDate, Quant):
+        self.exDate = exDate
+        self.Quant = Quant
+
+class Drink(Product):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate,Quant)
+        self.type = "Drink"
+
+x = Drink(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+
+class Soda(Drink):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Soda"
+
+x = Soda(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Water(Drink):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Water"
+
+x = Water(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Lemonade(Drink):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Lemonade"
+
+x = Lemonade(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Tea(Drink):
+    pass
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate,Quant)
+        self.type = "Tea"
+
+x = Tea(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class DrPepper(Soda):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "DrPepper"
+
+x = DrPepper(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Mug(Soda):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Mug"
+
+x = Mug(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Pepsi(Soda):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Pepsi"
+
+x = Pepsi(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Sprite(Soda):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Sprite"
+
+x = Sprite(str(datetime.datetime.today()), 1987)
+print(x.exDate)
+class Coke(Soda):
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Coke"
+
+x = Coke(str(datetime.datetime.today()), 1987)
+print(x.exDate)
