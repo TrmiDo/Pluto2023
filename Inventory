@@ -1,0 +1,240 @@
+from datetime import *
+import tkinter as tk
+import random
+from tkinter import *
+from ttkbootstrap.dialogs import Querybox
+
+def get_date():
+    cal = Querybox()
+    return cal.get_date()
+
+def create_labels(listOfInventory):
+    counter = 0
+    for i in range(len(listOfInventory)-1):
+        counter+=1
+        Label(window, text="Product name: " + listOfInventory[i].type + "   Cost per unit: " + str(listOfInventory[i].cost) + "\nExpiration date: "
+        + str(listOfInventory[i].expirationDate.strftime("%m/%d/%Y")) +"  Units left: "
+        + str(listOfInventory[i].quantity),font=("Arial", 20)).place(relx=0.210, rely=0.0 + (0.125 * counter), anchor='w')
+
+
+
+
+items = ["Cheese Pizza", "Pineapple Pizza", "Pepperoni Pizza", "Garlic Bread", "Caesar Salad", "House Salad", "Water", "Tea", "Lemonade", "DrPepper", "Pepsi", "Sprite", "Mug", "Coke"]
+window = tk.Tk()
+window.title("")
+#img = PhotoImage(file="1280px-HD_transparent_picture.png")
+#window.iconphoto(False, img)
+window.state("zoomed")
+
+class Product:
+
+    def __init__(self, exDate, Quant):
+        self.expirationDate = exDate
+        self.quantity = Quant
+        self.cost = 0
+        self.ID = ''
+
+
+    def addQuantity(self, quantity):
+        self.quantity += quantity
+
+class Food(Product):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Food"
+
+class Dish(Food):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Dish"
+
+class Pizza(Dish):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Pizza"
+
+class CheesePizza(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Cheese Pizza"
+        self.img = "CheesePizza.jpg"
+
+class PepperoniPizza(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Pepperoni Pizza"
+        self.img = "PepperoniPizza.jpg"
+
+class PineapplePizza(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Pineapple Pizza"
+        self.img = "PineapplePizza.jpg"
+
+class Calzone(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Calzone"
+        self.img = "Calzone.png"
+
+class Side(Food):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Side"
+
+class GarlicBread(Side):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Garlic Bread"
+        self.img = "GarlicBread.jpg"
+
+class Salad(Side):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Salad"
+
+class HouseSalad(Salad):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "House Salad"
+        self.img = "HouseSalad.jpg"
+
+class CaesarSalad(Salad):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Caesar Salad"
+        self.img = "CaesarSalad.jpg"
+
+class Drink(Product):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Drink"
+
+class Soda(Drink):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Soda"
+
+class Water(Drink):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Water"
+        self.img = "Water.jpg"
+
+class Lemonade(Drink):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Lemonade"
+        self.img = "Lemonade.jpg"
+
+class Tea(Drink):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Tea"
+        self.img = "Tea.jpg"
+
+class DrPepper(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Dr Pepper"
+        self.img = "DrPepper.jpg"
+
+class Mug(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Mug"
+        self.img = "Mug.jpg"
+
+class Pepsi(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Pepsi"
+        self.img = "Pepsi.jpg"
+
+class Sprite(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Sprite"
+        self.img = "Sprite.png"
+
+class Coke(Soda):
+
+    def __init__(self, exDate, Quant,cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Coke"
+        self.img = "Coke.jpg"
+
+firstDate = date.today() + timedelta(days=30)
+datesList = [firstDate]
+while firstDate > date.today():
+    firstDate -= timedelta(days=1)
+    datesList.append(firstDate)
+
+inventoryList = []
+def createRandomID():
+    ID = ""
+    for i in range(10):
+        ID += str(random.randint(0,9))
+    for i in range(len(inventoryList) - 2):
+        if ID == inventoryList[i].ID:
+            createRandomID()
+            break
+    return ID
+def populateList():
+    for i in range(7):
+        item = random.choice(items)
+        expDate = random.choice(datesList)
+        quantity = random.randint(-100,100)
+        cost = random.randint(1,10)
+        maker=False
+        for x in inventoryList:
+            if x.type == item and x.expirationDate == expDate:
+                x.addQuantity(quantity)
+                if x.quantity < 0:
+                    x.quantity = 0
+                maker=True
+        if maker==False:
+            if quantity < 0:
+                quantity = 0
+            inventoryList.append(eval(item.replace(" ",""))(expDate, quantity,cost))
+            inventoryList[len(inventoryList)-1].ID = createRandomID()
+
+populateList()
+create_labels(inventoryList)
+window.mainloop()
