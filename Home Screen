@@ -1,36 +1,264 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+import model
+import random
+from datetime import *
+from ttkbootstrap.dialogs import Querybox
+items = ["Cheese Pizza", "Pineapple Pizza", "Pepperoni Pizza", "Garlic Bread", "Caesar Salad", "House Salad", "Water", "Tea", "Lemonade", "DrPepper", "Pepsi", "Sprite", "Mug", "Coke"]
+def get_date():
+    cal = Querybox()
+    return cal.get_date()
+class Product:
+
+    def __init__(self, exDate, Quant):
+        self.expirationDate = exDate
+        self.quantity = Quant
+        self.cost = 0
+        self.ID = ''
+
+
+    def addQuantity(self, quantity):
+        self.quantity += quantity
+
+class Food(Product):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Food"
+
+class Dish(Food):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Dish"
+
+class Pizza(Dish):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Pizza"
+
+class CheesePizza(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Cheese Pizza"
+        self.img = "CheesePizza.jpg"
+
+class PepperoniPizza(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Pepperoni Pizza"
+        self.img = "PepperoniPizza.jpg"
+
+class PineapplePizza(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Pineapple Pizza"
+        self.img = "PineapplePizza.jpg"
+
+class Calzone(Pizza):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Calzone"
+        self.img = "Calzone.png"
+
+class Side(Food):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Side"
+
+class GarlicBread(Side):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Garlic Bread"
+        self.img = "GarlicBread.jpg"
+
+class Salad(Side):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Salad"
+
+class HouseSalad(Salad):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "House Salad"
+        self.img = "HouseSalad.jpg"
+
+class CaesarSalad(Salad):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Caesar Salad"
+        self.img = "CaesarSalad.jpg"
+
+class Drink(Product):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Drink"
+
+class Soda(Drink):
+
+    def __init__(self, exDate, Quant):
+        super().__init__(exDate, Quant)
+        self.type = "Soda"
+
+class Water(Drink):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Water"
+        self.img = "Water.jpg"
+
+class Lemonade(Drink):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Lemonade"
+        self.img = "Lemonade.jpg"
+
+class Tea(Drink):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Tea"
+        self.img = "Tea.jpg"
+
+class DrPepper(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Dr Pepper"
+        self.img = "DrPepper.jpg"
+
+class Mug(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Mug"
+        self.img = "Mug.jpg"
+
+class Pepsi(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Pepsi"
+        self.img = "Pepsi.jpg"
+
+class Sprite(Soda):
+
+    def __init__(self, exDate, Quant, cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Sprite"
+        self.img = "Sprite.png"
+
+class Coke(Soda):
+
+    def __init__(self, exDate, Quant,cost):
+        super().__init__(exDate, Quant)
+        self.cost = cost
+        self.type = "Coke"
+        self.img = "Coke.jpg"
+
+firstDate = date.today() + timedelta(days=30)
+datesList = [firstDate]
+while firstDate > date.today():
+    firstDate -= timedelta(days=1)
+    datesList.append(firstDate)
+
+inventoryList = []
+def createRandomID():
+    ID = ""
+    for i in range(10):
+        ID += str(random.randint(0,9))
+    for i in range(len(inventoryList) - 2):
+        if ID == inventoryList[i].ID:
+            createRandomID()
+            break
+    return ID
+def populateList():
+    for i in range(7):
+        item = random.choice(items)
+        expDate = random.choice(datesList)
+        quantity = random.randint(-100,100)
+        cost = random.randint(1,10)
+        maker=False
+        for x in inventoryList:
+            if x.type == item and x.expirationDate == expDate:
+                x.addQuantity(quantity)
+                if x.quantity < 0:
+                    x.quantity = 0
+                maker=True
+        if maker==False:
+            if quantity < 0:
+                quantity = 0
+            inventoryList.append(eval(item.replace(" ",""))(expDate, quantity,cost))
+            inventoryList[len(inventoryList)-1].ID = createRandomID()
+
+populateList()
 class MyGUI:
 
-    
     def __init__(self):
-
         def update_label_text():
-            
-            string_var.set("Hello, Tkinter!")
-        
+            string_var.set(model.get_data())
+
+        def create_labels(listOfInventory):
+            counter = 0
+            for i in range(len(listOfInventory) - 1):
+                counter += 1
+                Label(tab4, text="Product name: " + listOfInventory[i].type + "   Cost per unit: " + str(
+                    listOfInventory[i].cost) + "\nExpiration date: "
+                                   + str(listOfInventory[i].expirationDate.strftime("%m/%d/%Y")) + "  Units left: "
+                                   + str(listOfInventory[i].quantity), font=("Arial", 20)).place(relx=0.210,
+                                                                                                 rely=0.0 + (
+                                                                                                             0.125 * counter),
+                                                                                                 anchor='w')
+
         self.root = tk.Tk()
         self.root.geometry("800x500")
         self.root.title("Business Home Screen")
-        notebook=ttk.Notebook(self.root)
+        notebook = ttk.Notebook(self.root)
 
-        #Tabs
-        tab1= Frame(self.root)
-        tab2= Frame(self.root)
-        tab3= Frame(self.root)
+        # Tabs
+        tab1 = Frame(self.root)
+        tab2 = Frame(self.root)
+        tab3 = Frame(self.root)
+        tab4 = Frame(self.root)
 
-        notebook.add(tab1,text="Home")
-        notebook.add(tab2,text="Schedule")
-        notebook.add(tab3,text="Sustainablity")
+        notebook.add(tab1, text="Home")
+        notebook.add(tab2, text="Schedule")
+        notebook.add(tab3, text="Sustainablity")
+        notebook.add(tab4, text="Inventory")
         notebook.pack(expand=True, fill="both")
 
+        # Home
 
-
-        
-        #Home
-
-        label = tk.Label(tab1, text="Welcome to the Pizza Tower Terminal\nPlease select which screen you\nwould like to go to.", font=('Arial', 18))
+        label = tk.Label(tab1,
+                         text="Welcome to the Pizza Tower Terminal\nPlease select which screen you\nwould like to go to.",
+                         font=('Arial', 18))
         label.pack(padx=20, pady=10)
 
         buttonframe = tk.Frame(tab1)
@@ -50,9 +278,7 @@ class MyGUI:
         btn4 = tk.Button(buttonframe, text="Inventory", font=('Arial', 20))
         btn4.grid(row=1, column=1, stick=tk.W + tk.E)
 
-
-
-        #Schedule
+        # Schedule
 
         textbox = tk.Frame(tab2)
         textbox.columnconfigure(0, weight=1)
@@ -175,17 +401,14 @@ class MyGUI:
         text35.grid(row=4, column=6, sticky=tk.W + tk.E)
 
         textbox.pack()
-        
 
         buttonframe.pack()
 
-
-        #ecofriendly
-         # Dropdown menu
+        # ecofriendly
+        # Dropdown menu
 
         label = tk.Label(tab3, text="Ecofriendly", font=('Arial', 18))
         label.pack(padx=20, pady=10)
-
 
         string_var = tk.StringVar()
 
@@ -194,19 +417,13 @@ class MyGUI:
 
         button = tk.Button(tab3, text="Click Me", command=update_label_text)
         button.pack()
-        
-       
-        
 
-    def update_label_text():
-        string_var.set("Hello, Tkinter!")
+        create_labels(inventoryList)
+
+
+
     def on_closing(self):
         self.root.destroy()
-        
-    
 
-    
-
-    
 
 MyGUI().root.mainloop()
