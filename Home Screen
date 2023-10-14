@@ -20,7 +20,7 @@ class MyGUI:
 
         notebook.add(tab1,text="Home")
         notebook.add(tab2,text="Schedule")
-        notebook.add(tab3,text="Ecofriendly")
+        notebook.add(tab3,text="Sustainablity")
         notebook.pack(expand=True, fill="both")
 
 
@@ -184,30 +184,19 @@ class MyGUI:
         label = tk.Label(tab3, text="Ecofriendly", font=('Arial', 18))
         label.pack(padx=20, pady=10)
 
-        
+
+        string_var = tk.StringVar()
+
+        label = tk.Label(tab3, textvariable=string_var)
+        label.pack()
+        string_var.set("Hello, Tkinter!")
        
         
 
 
     def on_closing(self):
         self.root.destroy()
-    def display_Ecofriendly_info(self, *args):
-        selected_info = self.Ecofriendly_info_var.get()
-        if selected_info == "Ecofriendly Info 1":
-            self.textbox.config(state=tk.NORMAL)
-            self.textbox.delete(1.0, tk.END)  # Clear previous content
-            self.textbox.insert(tk.END, "Ecofriendly Info 1:\nThis is the information for Ecofriendly Info 1.")
-            self.textbox.config(state=tk.DISABLED)
-        elif selected_info == "Ecofriendly Info 2":
-            self.textbox.config(state=tk.NORMAL)
-            self.textbox.delete(1.0, tk.END)
-            self.textbox.insert(tk.END, "Ecofriendly Info 2:\nThis is the information for Ecofriendly Info 2.")
-            self.textbox.config(state=tk.DISABLED)
-        elif selected_info == "Ecofriendly Info 3":
-            self.textbox.config(state=tk.NORMAL)
-            self.textbox.delete(1.0, tk.END)
-            self.textbox.insert(tk.END, "Ecofriendly Info 3:\nThis is the information for Ecofriendly Info 3.")
-            self.textbox.config(state=tk.DISABLED)
+    
 
     
 
