@@ -1,0 +1,69 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class MyGUI:
+
+    def __init__(self):
+
+        self.root = tk.Tk()
+        self.root.geometry("800x500")
+        self.root.title("Ecofriendly Screen")
+
+        self.menubar = tk.Menu(self.root)
+
+        self.filemenu = tk.Menu(self.menubar, tearoff=0)
+        self.filemenu.add_command(label="Close", command=self.on_closing)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Close without question", command=exit)
+
+        self.actionmenu = tk.Menu(self.menubar, tearoff=0)
+
+        self.menubar.add_cascade(menu=self.filemenu, label="File")
+        self.menubar.add_cascade(menu=self.actionmenu, label="Home")
+        self.menubar.add_cascade(menu=self.actionmenu, label="Schedule")
+        self.menubar.add_cascade(menu=self.actionmenu, label="EcoFriendly")
+        self.menubar.add_cascade(menu=self.actionmenu, label="Sustainability")
+        self.menubar.add_cascade(menu=self.actionmenu, label="Inventory")
+
+        self.root.config(menu=self.menubar)
+
+        label = tk.Label(self.root, text="Ecofriendly", font=('Arial', 18))
+        label.pack(padx=20, pady=10)
+
+        # Dropdown menu
+        self.Ecofriendly_info_var = tk.StringVar(self.root)
+        self.Ecofriendly_info_var.set("Select Ecofriendly Info")
+        self.Ecofriendly_info_var.trace_add("write", self.display_Ecofriendly_info)
+
+        Ecofriendly_info_menu = tk.OptionMenu(self.root, self.Ecofriendly_info_var, "Ecofriendly Info 1", "Ecofriendly Info 2", "Ecofriendly Info 3")
+        Ecofriendly_info_menu.pack(pady=10)
+
+        # Textbox
+        self.textbox = tk.Text(self.root, height=10, width=50, state=tk.DISABLED)
+        self.textbox.pack(padx=20, pady=10)
+
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        if messagebox.askyesno(title="Quit?", message="Do you want to quit?"):
+            self.root.destroy()
+
+    def display_Ecofriendly_info(self, *args):
+        selected_info = self.Ecofriendly_info_var.get()
+        if selected_info == "Ecofriendly Info 1":
+            self.textbox.config(state=tk.NORMAL)
+            self.textbox.delete(1.0, tk.END)  # Clear previous content
+            self.textbox.insert(tk.END, "Ecofriendly Info 1:\nThis is the information for Ecofriendly Info 1.")
+            self.textbox.config(state=tk.DISABLED)
+        elif selected_info == "Ecofriendly Info 2":
+            self.textbox.config(state=tk.NORMAL)
+            self.textbox.delete(1.0, tk.END)
+            self.textbox.insert(tk.END, "Ecofriendly Info 2:\nThis is the information for Ecofriendly Info 2.")
+            self.textbox.config(state=tk.DISABLED)
+        elif selected_info == "Ecofriendly Info 3":
+            self.textbox.config(state=tk.NORMAL)
+            self.textbox.delete(1.0, tk.END)
+            self.textbox.insert(tk.END, "Ecofriendly Info 3:\nThis is the information for Ecofriendly Info 3.")
+            self.textbox.config(state=tk.DISABLED)
+
+MyGUI().root.mainloop()
