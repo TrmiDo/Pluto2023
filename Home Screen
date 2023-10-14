@@ -1,36 +1,37 @@
 import tkinter as tk
-from tkinter import messagebox
-
+from tkinter import *
+from tkinter import ttk
 class MyGUI:
 
+    
     def __init__(self):
 
+
+        
         self.root = tk.Tk()
         self.root.geometry("800x500")
         self.root.title("Business Home Screen")
+        notebook=ttk.Notebook(self.root)
 
-        self.menubar = tk.Menu(self.root)
+        #Tabs
+        tab1= Frame(self.root)
+        tab2= Frame(self.root)
+        tab3= Frame(self.root)
 
-        self.filemenu = tk.Menu(self.menubar, tearoff=0)
-        self.filemenu.add_command(label="Close", command=self.on_closing)
-        self.filemenu.add_separator()
-        self.filemenu.add_command(label="Close without question", command=exit)
+        notebook.add(tab1,text="Home")
+        notebook.add(tab2,text="Schedule")
+        notebook.add(tab3,text="Ecofriendly")
+        notebook.pack(expand=True, fill="both")
 
-        self.actionmenu = tk.Menu(self.menubar, tearoff=0)
 
-        self.menubar.add_cascade(menu=self.filemenu, label="File")
-        self.menubar.add_cascade(menu=self.actionmenu, label="Home")
-        self.menubar.add_cascade(menu=self.actionmenu, label="Schedule")
-        self.menubar.add_cascade(menu=self.actionmenu, label="EcoFriendly")
-        self.menubar.add_cascade(menu=self.actionmenu, label="Sustainability")
-        self.menubar.add_cascade(menu=self.actionmenu, label="Inventory")
 
-        self.root.config(menu=self.menubar)
+        
+        #Home
 
-        label = tk.Label(self.root, text="Welcome to the Pizza Tower Terminal\nPlease select which screen you\nwould like to go to.", font=('Arial', 18))
+        label = tk.Label(tab1, text="Welcome to the Pizza Tower Terminal\nPlease select which screen you\nwould like to go to.", font=('Arial', 18))
         label.pack(padx=20, pady=10)
 
-        buttonframe = tk.Frame(self.root)
+        buttonframe = tk.Frame(tab1)
         buttonframe.columnconfigure(0, weight=1)
         buttonframe.columnconfigure(1, weight=1)
         buttonframe.pack(padx=10, pady=50)
@@ -47,12 +48,167 @@ class MyGUI:
         btn4 = tk.Button(buttonframe, text="Inventory", font=('Arial', 20))
         btn4.grid(row=1, column=1, stick=tk.W + tk.E)
 
+
+
+        #Schedule
+
+        textbox = tk.Frame(tab2)
+        textbox.columnconfigure(0, weight=1)
+        textbox.columnconfigure(1, weight=1)
+        textbox.columnconfigure(2, weight=1)
+        textbox.columnconfigure(3, weight=1)
+        textbox.columnconfigure(4, weight=1)
+        textbox.columnconfigure(5, weight=1)
+        textbox.columnconfigure(6, weight=1)
+        textbox.pack(padx=10, pady=50)
+
+        # Create labels in the first row
+        label1 = tk.Label(textbox, text="Sun", font=('Arial', 14))
+        label1.grid(row=0, column=0, sticky=tk.W + tk.E)
+
+        label2 = tk.Label(textbox, text="Mon", font=('Arial', 14))
+        label2.grid(row=0, column=1, sticky=tk.W + tk.E)
+
+        label3 = tk.Label(textbox, text="Tue", font=('Arial', 14))
+        label3.grid(row=0, column=2, sticky=tk.W + tk.E)
+
+        label4 = tk.Label(textbox, text="Wed", font=('Arial', 14))
+        label4.grid(row=0, column=3, sticky=tk.W + tk.E)
+
+        label5 = tk.Label(textbox, text="Thur", font=('Arial', 14))
+        label5.grid(row=0, column=4, sticky=tk.W + tk.E)
+
+        label6 = tk.Label(textbox, text="Fri", font=('Arial', 14))
+        label6.grid(row=0, column=5, sticky=tk.W + tk.E)
+
+        label7 = tk.Label(textbox, text="Sat", font=('Arial', 14))
+        label7.grid(row=0, column=6, sticky=tk.W + tk.E)
+
+        # Create text widgets in the second row
+        text8 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text8.grid(row=1, column=0, sticky=tk.W + tk.E)
+
+        text9 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text9.grid(row=1, column=1, sticky=tk.W + tk.E)
+
+        text10 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text10.grid(row=1, column=2, sticky=tk.W + tk.E)
+
+        text11 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text11.grid(row=1, column=3, sticky=tk.W + tk.E)
+
+        text12 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text12.grid(row=1, column=4, sticky=tk.W + tk.E)
+
+        text13 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text13.grid(row=1, column=5, sticky=tk.W + tk.E)
+
+        text14 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text14.grid(row=1, column=6, sticky=tk.W + tk.E)
+
+        # Create text widgets in the third row
+        text15 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text15.grid(row=2, column=0, sticky=tk.W + tk.E)
+
+        text16 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text16.grid(row=2, column=1, sticky=tk.W + tk.E)
+
+        text17 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text17.grid(row=2, column=2, sticky=tk.W + tk.E)
+
+        text18 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text18.grid(row=2, column=3, sticky=tk.W + tk.E)
+
+        text19 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text19.grid(row=2, column=4, sticky=tk.W + tk.E)
+
+        text20 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text20.grid(row=2, column=5, sticky=tk.W + tk.E)
+
+        text21 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text21.grid(row=2, column=6, sticky=tk.W + tk.E)
+
+        # Create text widgets in the fourth row
+        text22 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text22.grid(row=3, column=0, sticky=tk.W + tk.E)
+
+        text23 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text23.grid(row=3, column=1, sticky=tk.W + tk.E)
+
+        text24 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text24.grid(row=3, column=2, sticky=tk.W + tk.E)
+
+        text25 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text25.grid(row=3, column=3, sticky=tk.W + tk.E)
+
+        text26 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text26.grid(row=3, column=4, sticky=tk.W + tk.E)
+
+        text27 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text27.grid(row=3, column=5, sticky=tk.W + tk.E)
+
+        text28 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text28.grid(row=3, column=6, sticky=tk.W + tk.E)
+
+        # Create text widgets in the fifth row
+        text29 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text29.grid(row=4, column=0, sticky=tk.W + tk.E)
+
+        text30 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text30.grid(row=4, column=1, sticky=tk.W + tk.E)
+
+        text31 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text31.grid(row=4, column=2, sticky=tk.W + tk.E)
+
+        text32 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text32.grid(row=4, column=3, sticky=tk.W + tk.E)
+
+        text33 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text33.grid(row=4, column=4, sticky=tk.W + tk.E)
+
+        text34 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text34.grid(row=4, column=5, sticky=tk.W + tk.E)
+
+        text35 = tk.Text(textbox, font=('Arial', 20), height=3, wrap=tk.WORD)
+        text35.grid(row=4, column=6, sticky=tk.W + tk.E)
+
+        textbox.pack()
+        
+
         buttonframe.pack()
 
-        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+        #ecofriendly
+         # Dropdown menu
+
+        label = tk.Label(tab3, text="Ecofriendly", font=('Arial', 18))
+        label.pack(padx=20, pady=10)
+
+        
+       
+        
+
 
     def on_closing(self):
-        if messagebox.askyesno(title="Quit?", message="Do you want to quit?"):
-            self.root.destroy()
+        self.root.destroy()
+    def display_Ecofriendly_info(self, *args):
+        selected_info = self.Ecofriendly_info_var.get()
+        if selected_info == "Ecofriendly Info 1":
+            self.textbox.config(state=tk.NORMAL)
+            self.textbox.delete(1.0, tk.END)  # Clear previous content
+            self.textbox.insert(tk.END, "Ecofriendly Info 1:\nThis is the information for Ecofriendly Info 1.")
+            self.textbox.config(state=tk.DISABLED)
+        elif selected_info == "Ecofriendly Info 2":
+            self.textbox.config(state=tk.NORMAL)
+            self.textbox.delete(1.0, tk.END)
+            self.textbox.insert(tk.END, "Ecofriendly Info 2:\nThis is the information for Ecofriendly Info 2.")
+            self.textbox.config(state=tk.DISABLED)
+        elif selected_info == "Ecofriendly Info 3":
+            self.textbox.config(state=tk.NORMAL)
+            self.textbox.delete(1.0, tk.END)
+            self.textbox.insert(tk.END, "Ecofriendly Info 3:\nThis is the information for Ecofriendly Info 3.")
+            self.textbox.config(state=tk.DISABLED)
+
+    
 
 MyGUI().root.mainloop()
