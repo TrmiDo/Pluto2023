@@ -6,7 +6,9 @@ class MyGUI:
     
     def __init__(self):
 
-
+        def update_label_text():
+            
+            string_var.set("Hello, Tkinter!")
         
         self.root = tk.Tk()
         self.root.geometry("800x500")
@@ -189,13 +191,20 @@ class MyGUI:
 
         label = tk.Label(tab3, textvariable=string_var)
         label.pack()
-        string_var.set("Hello, Tkinter!")
+
+        button = tk.Button(tab3, text="Click Me", command=update_label_text)
+        button.pack()
+        
        
         
 
-
+    def update_label_text():
+        string_var.set("Hello, Tkinter!")
     def on_closing(self):
         self.root.destroy()
+        
+    
+
     
 
     
