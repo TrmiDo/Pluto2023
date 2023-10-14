@@ -36,9 +36,8 @@ def get_date(product_id):
   model2.fit(x,y)
   predictions6 = model2.predict([[1]])
   
-  model2= LogisticRegression() 
-  model2.fit(x,y)
-  predictions7 = model2.predict([[1]])
+
   
-  average=(predictions1+predictions2+predictions3+predictions4+predictions5+predictions6+predictions7)/7.0
+  average=(predictions1+predictions2+predictions3+predictions4+predictions5+predictions6)/6.0
+  retSTR='Linear Regression: '+predictions1 + ' GaussianNB: '+predictions2 +' Decision Tree: '+predictions3 +' Random Forrest: '+predictions4 + ' Extra Trees: '+predictions5 + ' Logistic Regression: '+predictions6 + 'Average: '+average 
   return average
